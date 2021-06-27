@@ -22,10 +22,12 @@ jobs:
       - name:
         run: |
           ./mktestdata.sh --dir ./sd
-          cd sd && zip -r ../testdata.zip *
+          cd sd && zip -r ../testdata.zip * && cd -
+          ./mktestdata.sh --large-folders --dir ./sd-large
+          cd sd-large && zip -r ../testdata-large-folders.zip *
 
       - name: upload artifacts
         uses: actions/upload-artifact@master
         with:
-          name: assets
-          path: testdata.zip
+          name: testdata
+          path: testdata*.zip
