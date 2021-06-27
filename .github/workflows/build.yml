@@ -1,0 +1,28 @@
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+name: create testdata
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v2
+
+      - name: install audio tools
+        run: |
+          sudo apt-get -y install espeak ffmpeg
+
+      - name:
+        run: ./mktestdata.sh --dir ./sd
+
+      - name: upload artifacts
+        uses: actions/upload-artifact@master
+        with:
+          name: assets
+          path: sd/
