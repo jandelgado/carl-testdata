@@ -18,11 +18,13 @@ jobs:
       - name: create testdata
         run: |
           ./mktestdata.sh --dir ./sd
-          cd sd && zip -r ../testdata.zip *
+          cd sd && zip -r ../testdata.zip * && cd -
+          ./mktestdata.sh --large-folders --dir ./sd-large
+          cd sd-large && zip -r ../testdata-large-folders.zip *
 
       - name: Upload release assets
         uses: skx/github-action-publish-binaries@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          args: './testdata.zip'
+          args: './testdata*.zip'
