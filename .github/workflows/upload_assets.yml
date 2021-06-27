@@ -15,12 +15,14 @@ jobs:
           sudo apt-get update
           sudo apt-get -y install espeak ffmpeg
 
-      - name:
-        run: ./mktestdata.sh --dir ./sd
+      - name: create testdata
+        run: |
+          ./mktestdata.sh --dir ./sd
+          cd sd && zip -r ../testdata.zip *
 
       - name: Upload release assets
         uses: skx/github-action-publish-binaries@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          args: './sd/*'
+          args: './testdata.zip'
