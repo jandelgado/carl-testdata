@@ -11,8 +11,10 @@ Uses espeak and ffmpeg for MP3 file creation.
 
 ## Usage
 
-* download `testdata.zip` from the [release page](https://github.com/jandelgado/carl-testdata/releases)
-* unzip `testdata.zip` in root directory of your SD card
+* download `testdata.zip` or `testdata-large-folders.zip` (when carl is
+  compiled with `USE_LARGE_FOLDERS`) from the 
+  [release page](https://github.com/jandelgado/carl-testdata/releases)
+* unzip the zip archive to the root directory of your SD card
 
 ## Author
 
